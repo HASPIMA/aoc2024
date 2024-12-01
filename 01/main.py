@@ -26,7 +26,7 @@ def main(
 
 if __name__ == '__main__':
     # TODO: Maybe allow for input from stdin
-    input_file = 'aoc_input.txt'
+    input_file = '01/aoc_input.txt'
 
     if len(argv) > 1:
         input_file = argv[1]
