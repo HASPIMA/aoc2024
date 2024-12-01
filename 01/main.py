@@ -39,12 +39,10 @@ def part_2(
     left_list.sort()
     right_list.sort()
 
-    total = 0
-    for l_id in left_list:
-        freq = right_list.count(l_id)
-        total += l_id * freq
-
-    return total
+    return sum(
+        l_id * right_list.count(l_id)
+        for l_id in left_list
+    )
 
 
 if __name__ == '__main__':
