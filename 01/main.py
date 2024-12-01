@@ -1,7 +1,7 @@
 import sys
 
 
-def part_1(
+def base_part(
     problem_input: str,
 ):
     left_list: list[int] = []
@@ -15,6 +15,13 @@ def part_1(
 
     left_list.sort()
     right_list.sort()
+    return left_list, right_list
+
+
+def part_1(
+    problem_input: str,
+):
+    left_list, right_list = base_part(problem_input)
 
     return sum(
         map(
@@ -27,17 +34,7 @@ def part_1(
 def part_2(
     problem_input: str,
 ):
-    left_list: list[int] = []
-    right_list: list[int] = []
-
-    for line in problem_input.split('\n'):
-        l_id, r_id = map(int, line.split())
-
-        left_list.append(l_id)
-        right_list.append(r_id)
-
-    left_list.sort()
-    right_list.sort()
+    left_list, right_list = base_part(problem_input)
 
     return sum(
         l_id * right_list.count(l_id)
