@@ -1,7 +1,7 @@
 from sys import argv
 
 
-def main(
+def part_1(
     problem_input: str,
 ):
     left_list: list[int] = []
@@ -33,4 +33,4 @@ if __name__ == '__main__':
 
     with open(input_file, 'r') as f:
         problem_input = f.read()
-        print(main(problem_input))
+        print(part_1(problem_input))
