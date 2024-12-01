@@ -49,6 +49,7 @@ def part_2(
 
 if __name__ == '__main__':
     import argparse
+    from typing import TextIO
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -68,3 +69,11 @@ if __name__ == '__main__':
     )
 
     args = parser.parse_args()
+    current_part: int = args.part
+    input_file: TextIO = args.input
+
+    parts = [part_1, part_2]
+    part_func = parts[current_part - 1]
+
+    with input_file as input_file:
+        print(part_func(input_file.read().strip()))
