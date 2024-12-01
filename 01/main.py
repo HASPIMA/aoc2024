@@ -1,4 +1,4 @@
-from sys import argv
+import sys
 
 
 def part_1(
@@ -48,12 +48,23 @@ def part_2(
 
 
 if __name__ == '__main__':
-    # TODO: Maybe allow for input from stdin
-    input_file = '01/aoc_input.txt'
+    import argparse
 
-    if len(argv) > 1:
-        input_file = argv[1]
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        'part',
+        help='The part of the challenge to run',
+        type=int,
+        choices=[1, 2],
+    )
+    parser.add_argument(
+        '-i',
+        '--input',
+        '--input_file',
+        type=argparse.FileType('r'),
+        help='The file to use as input (if not specified stdin will be used instead)',
+        nargs='?',
+        default=sys.stdin,
+    )
 
-    with open(input_file, 'r') as f:
-        problem_input = f.read()
-        print(part_2(problem_input))
+    args = parser.parse_args()
