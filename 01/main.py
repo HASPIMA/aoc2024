@@ -4,7 +4,24 @@ from sys import argv
 def main(
     problem_input: str,
 ):
-    pass
+    left_list: list[int] = []
+    right_list: list[int] = []
+
+    for line in problem_input.split('\n'):
+        l_id, r_id = map(int, line.split())
+
+        left_list.append(l_id)
+        right_list.append(r_id)
+
+    left_list.sort()
+    right_list.sort()
+
+    return sum(
+        map(
+            lambda x: abs(x[0] - x[1]),
+            zip(left_list, right_list)
+        ),
+    )
 
 
 if __name__ == '__main__':
