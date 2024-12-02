@@ -4,7 +4,34 @@ import sys
 def part_1(
     problem_input: str,
 ) -> int:
-    ...
+    reports = [
+        list(map(int, report.split()))
+        for report in problem_input.split('\n')
+    ]
+
+    safe_reports = 0
+
+    for report in reports:
+        is_safe = True
+        prev_level = report[0]
+        should_increase = report[1] > report[0]
+        for level in report[1:]:
+            differ = 1 <= abs(level - prev_level) <= 3
+            if not differ or not is_safe:
+                is_safe = False
+                break
+
+            if (should_increase and level > prev_level) or \
+                    (not should_increase and level < prev_level):
+                prev_level = level
+                continue
+
+            is_safe = False
+
+        if is_safe:
+            safe_reports += 1
+
+    return safe_reports
 
 
 def part_2(
