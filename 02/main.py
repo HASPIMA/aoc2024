@@ -49,7 +49,21 @@ def part_1(
 def part_2(
     problem_input: str,
 ) -> int:
-    ...
+    reports = get_reports(problem_input)
+
+    safe_reports = 0
+    for report in reports:
+        if is_report_safe(report):
+            safe_reports += 1
+            continue
+
+        # By removing a single element from the report, we can check if it's safe
+        for i in range(len(report)):
+            if is_report_safe(report[:i] + report[i + 1:]):
+                safe_reports += 1
+                break
+
+    return safe_reports
 
 
 def main():
