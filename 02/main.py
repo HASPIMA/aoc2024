@@ -37,13 +37,14 @@ def part_1(
 ) -> int:
     reports = get_reports(problem_input)
 
-    safe_reports = 0
-
-    for report in reports:
-        if is_report_safe(report):
-            safe_reports += 1
-
-    return safe_reports
+    # We could use a filter here, but it would be less readable (imho)
+    return len(
+        [
+            report
+            for report in reports
+            if is_report_safe(report)
+        ]
+    )
 
 
 def part_2(
