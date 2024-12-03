@@ -5,6 +5,23 @@ import re
 def part_1(
     problem_input: str,
 ) -> int:
+    '''
+    Return the sum of the products of the two numbers in each mul call in the input.
+
+    * Numbers are represented as 1-3 digit integers.
+    * The mul calls are in the form
+    `mul(x,y)` where x and y are integers. Any other form of mul call will not be considered.
+
+    Args:
+        problem_input (str): The input to process
+
+    Returns:
+        int: The sum of the products of the two numbers in each mul call in the input
+
+    Example:
+        >>> part_1("xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))")
+        161
+    '''
     regex = re.compile(r'mul\((\d{1,3}),(\d{1,3})\)', re.MULTILINE)
 
     return sum(
