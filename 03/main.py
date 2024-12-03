@@ -33,6 +33,27 @@ def part_1(
 def part_2(
     problem_input: str,
 ) -> int:
+    '''
+    Processes the given problem input string and calculates a result based on specific patterns.
+
+    The function uses regular expressions to find and process specific patterns in the input string:
+    - "mul(lhs,rhs)": Multiplies lhs and rhs (both 1-3 digit integers) and adds the result to the total if the current state allows.
+    - "do()": Sets the state to allow multiplication.
+    - "don't()": Sets the state to disallow multiplication.
+
+    Args:
+        problem_input (str): The input string containing the patterns to be processed.
+
+    Returns:
+        int: The calculated result based on the processed patterns.
+
+    Raises:
+        ValueError: If an unexpected match is found in the input string.
+
+    Example:
+        >>> part_2("xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))")
+        48
+    '''
     regex = r"(?P<mul>mul)\((?P<lhs>\d{1,3}),(?P<rhs>\d{1,3})\)|(?P<do>do)\(\)|(?P<dont>don't)\(\)"
     result = 0
     should_do = True
