@@ -16,7 +16,21 @@ def part_1(
 def part_2(
     problem_input: str,
 ) -> int:
-    ...
+    regex = r"(?P<mul>mul)\((?P<lhs>\d{1,3}),(?P<rhs>\d{1,3})\)|(?P<do>do)\(\)|(?P<dont>don't)\(\)"
+    result = 0
+    should_do = True
+
+    for m in re.finditer(regex, problem_input, re.MULTILINE):
+        if m.group('mul') and should_do:
+            result += int(m.group('lhs')) * int(m.group('rhs'))
+        elif m.group('do'):
+            should_do = True
+        elif m.group("dont"):
+            should_do = False
+        else:
+            raise ValueError(f"Unexpected match: {m}")
+
+    return result
 
 
 def main():
