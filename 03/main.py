@@ -6,12 +6,11 @@ def part_1(
     problem_input: str,
 ) -> int:
     regex = re.compile(r'mul\((\d{1,3}),(\d{1,3})\)', re.MULTILINE)
-    total = 0
 
-    for match in regex.finditer(problem_input):
-        total += int(match.group(1)) * int(match.group(2))
-
-    return total
+    return sum(
+        int(match.group(1)) * int(match.group(2))
+        for match in regex.finditer(problem_input)
+    )
 
 
 def part_2(
