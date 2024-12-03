@@ -47,9 +47,6 @@ def part_2(
     Returns:
         int: The calculated result based on the processed patterns.
 
-    Raises:
-        ValueError: If an unexpected match is found in the input string.
-
     Example:
         >>> part_2("xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))")
         48
@@ -65,8 +62,6 @@ def part_2(
             should_do = True
         elif m.group("dont"):
             should_do = False
-        else:
-            raise ValueError(f"Unexpected match: {m}")
 
     return result
 
